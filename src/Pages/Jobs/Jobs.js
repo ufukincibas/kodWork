@@ -1,15 +1,48 @@
+import React, { useState, useEffect } from "react";
+import { View, FlatList, Text, ActivityIndicator } from "react-native";
+import JobsCard from "../../Components/Cards/JobsCard";
 
-import React ,{useEffect} from "react";
-import { Text , View } from "react-native";
+function Jobs() {
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    // API'den veriyi çek
+    fetch("https://www.themuse.com/api/public/jobs?page=1")
+      .then((response) => response.json())
+      .then((data) => {
+        setJobs(data.results);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching jobs:", error);
+        setLoading(false);
+      });
+  }, []);
 
-function Jobs(){
- 
-  return(
+  const renderJob = ({ item }) => (
+    <JobsCard
+      job={item}
+      onPress={() => {/* detay sayfasına yönlendirme işlemi */}}
+      onFavorite={() => {/* favorilere ekleme işlemi */}}
+      onDelete={() => {/* favorilerden silme işlemi */}}
+      isFavorite={false}
+    />
+  );
+
+  return (
     <View>
-      <Text>Hello From First</Text>
+      {loading ? (
+        <ActivityIndicator size="large" color="#0000ff" />
+      ) : (
+        <FlatList
+          data={jobs}
+          renderItem={renderJob}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      )}
     </View>
-  )
+  );
 }
 
 export default Jobs;
