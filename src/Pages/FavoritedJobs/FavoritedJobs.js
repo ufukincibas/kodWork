@@ -1,12 +1,12 @@
 import React from "react";
 import { Text , View } from "react-native";
 
-function First(){
+function FavoritedJobs(){
   return(
     <View>
-      <Text>Hello From First</Text>
+      <Text>Hello from Second</Text>
     </View>
   )
 }
 
-export default First;
+export default FavoritedJobs;

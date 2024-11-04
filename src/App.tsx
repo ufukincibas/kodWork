@@ -4,8 +4,8 @@ import { Text , View } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import First from "./Pages/First";
-import Second from "./Pages/Second";
+import Jobs from "./Pages/Jobs"
+import FavoritedJobs from "./Pages/FavoritedJobs"
 
 const Drawer = createDrawerNavigator();
 
@@ -13,8 +13,8 @@ function App(){
   return(
   <NavigationContainer>
     <Drawer.Navigator>
-      <Drawer.Screen name="FirstPage" component={First}/>
-      <Drawer.Screen name="SecondPage" component={Second}/>
+      <Drawer.Screen name="JobsPage" component={Jobs}/>
+      <Drawer.Screen name="FavoritedJobsPage" component={FavoritedJobs}/>
     </Drawer.Navigator>
   </NavigationContainer>
   )
