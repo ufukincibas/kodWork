@@ -1,12 +1,20 @@
-import React from "react";
-import { TouchableOpacity , Text } from "react-native";
+import React from 'react'
+import { View,Text,TouchableOpacity } from 'react-native'
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-function Button(){
-    return(
-        <TouchableOpacity>
-            <Text>button Structure!</Text>
+import styles from "./Button.styles"
+
+export default function Button({onFavorite,onPress}) {
+  return (
+    <View style={styles.buttons_container}>
+        <TouchableOpacity style={styles.submit_button} onPress={onPress}>
+            <Icon name="chat" size={22} color="white"/>
+            <Text style={styles.button}>Submit</Text>
         </TouchableOpacity>
-    )
+        <TouchableOpacity style={styles.favorite_button} onPress={onFavorite}>
+        <Icon name="bookmark" size={22} color="white"/>
+            <Text style={styles.button}>Favorite</Text>
+        </TouchableOpacity>
+    </View>
+  )
 }
-
-export default Button;

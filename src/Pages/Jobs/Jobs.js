@@ -23,9 +23,9 @@ function Jobs() {
   const renderJob = ({ item }) => (
     <JobsCard
       job={item}
-      onPress={() => {/* detay sayfasına yönlendirme işlemi */}}
-      onFavorite={() => {/* favorilere ekleme işlemi */}}
-      onDelete={() => {/* favorilerden silme işlemi */}}
+      onPress={() => {}}
+      onFavorite={() => {}}
+      onDelete={() => {}}
       isFavorite={false}
     />
   );
