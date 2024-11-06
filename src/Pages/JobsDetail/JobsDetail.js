@@ -5,11 +5,13 @@ import useFetch from '../../Components/hooks/useFetch'
 import{useDispatch,useSelector} from "react-redux"
 import RenderHTML from 'react-native-render-html';
 import styles from './JobsDetails.styles';
-import Buttons from '../../Components/Button'
+import Button from '../../Components/Button'
 import Lottie from 'lottie-react-native';
 
 
 function JobsDetail({route}) {
+    
+
     const{id}=route.params
     const{data,error,loading}=useFetch('https://www.themuse.com/api/public/jobs/'+id)
     
@@ -24,12 +26,17 @@ function JobsDetail({route}) {
     };
     
     if (loading) {
-        return <Lottie source={require('../../assets/loading.json')} autoPlay  />
+        return <Lottie source={require('../../assets/loading.json')} autoPlay />;
     }
     
     if (error) {
-        return <Lottie source={require('../../assets/error.json')} autoPlay  />
+        return <Lottie source={require('../../assets/error.json')} autoPlay />;
     }
+    
+    if (!data || Object.keys(data).length === 0) {
+        return <Text>Data not found</Text>;  // Veri gelmediyse bu mesajı göster
+    }
+    
     
   return(
     <ScrollView style={styles.main_container}>
@@ -51,7 +58,7 @@ function JobsDetail({route}) {
             <View style={styles.detailBody}>
                 <RenderHTML source={{html:`${data.contents}`}} contentWidth={width}></RenderHTML>
             </View>
-            <Buttons onPress={()=>Alert.alert("Success","You're in! We're Text You...")} onFavorite={handleAdd} /> 
+            <Button onPress={()=>Alert.alert("Success","You're in! We're Text You...")} onFavorite={handleAdd} /> 
             {/* onPressFavorites={()=>handleFavorites(data)} */}
         </ScrollView>     
     )
